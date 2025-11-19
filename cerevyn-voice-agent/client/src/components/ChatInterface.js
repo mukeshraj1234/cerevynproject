@@ -3,6 +3,7 @@ import axios from 'axios';
 import MessageBubble from './MessageBubble';
 import VoiceInput from './VoiceInput';
 import '../styles/ChatInterface.css';
+import api from './api';
 
 function ChatInterface({ user, onLogout }) {
   const [messages, setMessages] = useState([]);

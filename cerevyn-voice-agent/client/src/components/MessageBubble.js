@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/MessageBubble.css';
+import api from './api';
 
 function MessageBubble({ message }) {
   const isUser = message.type === 'user';

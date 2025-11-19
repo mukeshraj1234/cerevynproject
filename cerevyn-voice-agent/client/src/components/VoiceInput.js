@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/VoiceInput.css';
+import api from './api';
 
 function VoiceInput({ onTranscript, isSpeaking }) {
   const [isListening, setIsListening] = useState(false);

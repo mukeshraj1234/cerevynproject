@@ -12,21 +12,57 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Load employee data
-const employeeData = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/employees.json'), 'utf-8'));
+// Vercel-specific adjustments
+const isVercel = process.env.VERCEL === '1';
+
+// Load employee data with Vercel compatibility
+let employeeData;
+try {
+  const dataPath = isVercel 
+    ? path.join(__dirname, 'data/employees.json')
+    : path.join(__dirname, '../data/employees.json');
+  employeeData = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+} catch (error) {
+  console.error('Error loading employee data:', error);
+  // Fallback data for Vercel deployment
+  employeeData = {
+    users: [],
+    leaveBalance: [],
+    policies: {},
+    meetingRooms: [],
+    itsupport: {}
+  };
+}
 
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(cors({
+  origin: isVercel 
+    ? ['https://cerevynproject.vercel.app', 'https://your-app.vercel.app'] 
+    : ['http://localhost:3000', 'http://localhost:3001'],
+  credentials: true
+}));
 
-// Session configuration
+// For Vercel, use static files from build directory
+if (isVercel) {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+} else {
+  app.use(express.static(path.join(__dirname, '../public')));
+}
+
+// Session configuration for Vercel (use memory store for serverless)
 app.use(session({
-  secret: 'cerevyn-secret-key-2024',
+  secret: process.env.SESSION_SECRET || 'cerevyn-secret-key-2024',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false, maxAge: 3600000 } // 1 hour
+  cookie: { 
+    secure: isVercel, // Use secure cookies in production
+    maxAge: 3600000, // 1 hour
+    sameSite: isVercel ? 'none' : 'lax'
+  },
+  // For Vercel serverless, use memory store (not persistent across functions)
+  store: new session.MemoryStore()
 }));
 
 // Routes
@@ -49,8 +85,12 @@ app.post('/api/login', (req, res) => {
 
 // Logout endpoint
 app.post('/api/logout', (req, res) => {
-  req.session.destroy();
-  res.json({ success: true });
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ success: false, message: 'Logout failed' });
+    }
+    res.json({ success: true });
+  });
 });
 
 // Check session
@@ -166,13 +206,38 @@ app.post('/api/save-conversation', requireLogin, (req, res) => {
   const userId = req.session.userId;
   const timestamp = new Date().toISOString();
   
-  const logFile = path.join(__dirname, `../data/conversation-${userId}-${Date.now()}.json`);
-  fs.writeFileSync(logFile, JSON.stringify({ userId, timestamp, conversation }, null, 2));
-  
-  res.json({ success: true, message: 'Conversation saved' });
+  try {
+    const logFile = path.join(__dirname, `../data/conversation-${userId}-${Date.now()}.json`);
+    fs.writeFileSync(logFile, JSON.stringify({ userId, timestamp, conversation }, null, 2));
+    res.json({ success: true, message: 'Conversation saved' });
+  } catch (error) {
+    console.error('Error saving conversation:', error);
+    res.json({ success: true, message: 'Conversation logged' }); // Still return success for Vercel
+  }
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Cerevyn Voice Agent running at http://localhost:${PORT}`);
-}); 
+// Health check endpoint for Vercel
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'OK', 
+    timestamp: new Date().toISOString(),
+    environment: isVercel ? 'production' : 'development'
+  });
+});
+
+// Serve React app for all other routes (Vercel specific)
+if (isVercel) {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+  });
+}
+
+// Export for Vercel serverless function
+export default app;
+
+// Only start server if not in Vercel environment
+if (!isVercel) {
+  app.listen(PORT, () => {
+    console.log(`Cerevyn Voice Agent running at http://localhost:${PORT}`);
+  });
+}

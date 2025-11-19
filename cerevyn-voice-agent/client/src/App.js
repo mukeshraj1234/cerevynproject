@@ -4,6 +4,17 @@ import Login from './components/Login';
 import ChatInterface from './components/ChatInterface';
 import './styles/App.css';
 
+// Set API base URL for both local development and production
+const API_BASE = process.env.NODE_ENV === 'production' 
+  ? '/api' 
+  : 'http://localhost:3000/api';
+
+// Configure axios base URL
+const api = axios.create({
+  baseURL: API_BASE,
+  withCredentials: true // Important for sessions to work
+});
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
@@ -16,13 +27,13 @@ function App() {
 
   const checkSession = async () => {
     try {
-      const response = await axios.get('/api/session');
+      const response = await api.get('/session');
       if (response.data.authenticated) {
         setIsAuthenticated(true);
         setUser(response.data.user);
       }
     } catch (error) {
-      console.log('Session check failed');
+      console.log('Session check failed:', error.message);
     } finally {
       setLoading(false);
     }
@@ -33,9 +44,15 @@ function App() {
     setUser(userData);
   };
 
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    setUser(null);
+  const handleLogout = async () => {
+    try {
+      await api.post('/logout');
+    } catch (error) {
+      console.log('Logout error:', error.message);
+    } finally {
+      setIsAuthenticated(false);
+      setUser(null);
+    }
   };
 
   if (loading) {
@@ -50,9 +67,9 @@ function App() {
   return (
     <div className="app">
       {!isAuthenticated ? (
-        <Login onLogin={handleLogin} />
+        <Login onLogin={handleLogin} api={api} />
       ) : (
-        <ChatInterface user={user} onLogout={handleLogout} />
+        <ChatInterface user={user} onLogout={handleLogout} api={api} />
       )}
     </div>
   );
