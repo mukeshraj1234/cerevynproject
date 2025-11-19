@@ -1,0 +1,159 @@
+.voice-input-section {
+  margin-bottom: 16px;
+  animation: slideUp 0.4s ease-out;
+}
+
+.btn-voice {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border-radius: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+  position: relative;
+  font-size: 15px;
+}
+
+.btn-voice:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-voice:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-voice.listening {
+  animation: micPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes micPulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+  }
+  50% {
+    box-shadow: 0 6px 25px rgba(245, 87, 108, 0.6);
+  }
+}
+
+.mic-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.mic-icon.active {
+  animation: micWave 1s ease-in-out infinite;
+}
+
+@keyframes micWave {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.voice-label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.listening-feedback {
+  background: white;
+  border: 2px solid #f5576c;
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  margin-bottom: 12px;
+  animation: slideDown 0.3s ease-out;
+  box-shadow: 0 4px 12px rgba(245, 87, 108, 0.1);
+}
+
+.transcript-text {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+  min-height: 20px;
+  line-height: 1.4;
+}
+
+.pulse-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.pulse {
+  width: 6px;
+  height: 6px;
+  background: #f5576c;
+  border-radius: 50%;
+  animation: pulseDot 1.5s ease-in-out infinite;
+}
+
+.pulse:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.pulse:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.pulse:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes pulseDot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .btn-voice {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .listening-feedback {
+    padding: 12px;
+  }
+
+  .transcript-text {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-voice {
+    padding: 11px;
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .mic-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .voice-label {
+    font-size: 12px;
+  }
+}

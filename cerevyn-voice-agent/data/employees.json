@@ -1,0 +1,30 @@
+{
+  "users": [
+    {"id": "EMP001", "name": "mukesh", "email": "mukesh@company.com", "password": "12345678", "department": "IT", "position": "Senior Engineer"},
+    {"id": "EMP002", "name": "sanjay", "email": "sanjay@company.com", "password": "12345678", "department": "HR", "position": "HR Manager"},
+    {"id": "EMP003", "name": "teja", "email": "sanjay@company.com", "password": "12345678", "department": "Finance", "position": "Finance Analyst"}
+  ],
+  "leaveBalance": [
+    {"employeeId": "EMP001", "casual": 8, "medical": 5, "earned": 12, "used": 3},
+    {"employeeId": "EMP002", "casual": 6, "medical": 4, "earned": 10, "used": 5},
+    {"employeeId": "EMP003", "casual": 10, "medical": 5, "earned": 15, "used": 2}
+  ],
+  "policies": {
+    "workingHours": "9:00 AM - 6:00 PM IST, Monday to Friday",
+    "remotework": "Eligible employees can work from home up to 2 days per week",
+    "holidaylist": "25 public holidays per annum",
+    "expenses": "Submit expense claims within 30 days with valid receipts",
+    "code_of_conduct": "Professional behavior and ethical standards must be maintained"
+  },
+  "meetingRooms": [
+    {"roomId": "CONF-A", "name": "Conference Room A", "capacity": 10, "booked": []},
+    {"roomId": "CONF-B", "name": "Conference Room B", "capacity": 8, "booked": []},
+    {"roomId": "BOARD", "name": "Board Room", "capacity": 20, "booked": []}
+  ],
+  "itsupport": {
+    "vpn": "VPN setup: Contact IT at it-helpdesk@company.com or extension 5555",
+    "softwarelicense": "Software licenses available through IT portal at portal.company.com",
+    "hardwareissues": "For hardware problems, submit ticket at support.company.com",
+    "password": "Self-service password reset at portal.company.com"
+  }
+}

@@ -1,0 +1,110 @@
+﻿[
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\client\\src\\components\\MessageBubble.js",
+        "Size":  588
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\client\\src\\components\\VoiceInput.js",
+        "Size":  3269
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\client\\src\\styles\\App.css",
+        "Size":  1464
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\client\\src\\index.js",
+        "Size":  272
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\client\\src\\components\\ChatInterface.js",
+        "Size":  6070
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\client\\src\\components\\Login.js",
+        "Size":  4578
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\client\\src\\styles\\ChatInterface.css",
+        "Size":  7126
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\client\\src\\styles\\VoiceInput.css",
+        "Size":  2679
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\data\\employees.json",
+        "Size":  1802
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\src\\server.js",
+        "Size":  6822
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\client\\src\\styles\\index.css",
+        "Size":  1129
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\client\\src\\styles\\Login.css",
+        "Size":  5685
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\client\\src\\styles\\MessageBubble.css",
+        "Size":  1532
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\client\\src\\App.js",
+        "Size":  1449
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\package.json",
+        "Size":  545
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\PROJECT_FILES.json",
+        "Size":  0
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\PROJECT_SUMMARY.txt",
+        "Size":  11650
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\.env.example",
+        "Size":  193
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\.gitignore",
+        "Size":  101
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\COMPLETE_DOCUMENTATION.md",
+        "Size":  14363
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\QUICKSTART.md",
+        "Size":  3333
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\START_HERE.md",
+        "Size":  4887
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\client\\package.json",
+        "Size":  728
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\client\\public\\index.html",
+        "Size":  264
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\README.md",
+        "Size":  5168
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\setup.bat",
+        "Size":  1880
+    },
+    {
+        "Path":  "E:\\automation\\cerevyn-voice-agent\\setup.sh",
+        "Size":  1408
+    }
+]

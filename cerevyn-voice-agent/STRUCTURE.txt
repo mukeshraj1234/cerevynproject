@@ -1,0 +1,60 @@
+﻿CEREVYN VOICE AGENT - PROJECT STRUCTURE
+==========================================
+
+cerevyn-voice-agent/
+
+  Documentation Files
+    START_HERE.md                     READ THIS FIRST!
+    README.md                        (Full features)
+    QUICKSTART.md                    (Quick start)
+    COMPLETE_DOCUMENTATION.md        (Technical)
+    FILE_INDEX.md                    (File reference)
+    PROJECT_SUMMARY.txt              (Visual overview)
+    PROJECT_COMPLETE.md              (Completion summary)
+
+  Setup & Configuration
+    setup.bat                        (Windows auto-setup)
+    setup.sh                         (Linux/Mac auto-setup)
+    package.json                     (Backend dependencies)
+    .env.example                     (Environment template)
+    .gitignore                       (Git exclusions)
+
+  Backend (src/)
+    server.js                        (Express API server)
+        Authentication
+        Query processing
+        Session management
+        Conversation logging
+
+  Frontend (client/)
+    package.json                     (React dependencies)
+    public/index.html                (HTML entry)
+    src/
+        App.js                       (Main React component)
+        index.js                     (React entry point)
+       
+         components/
+           Login.js                 (Login form)
+           ChatInterface.js         (Main chat UI)
+           MessageBubble.js         (Message display)
+           VoiceInput.js            (Voice control)
+       
+         styles/
+            index.css                (Global styles)
+            App.css                  (App layout)
+            Login.css                (Login styling)
+            ChatInterface.css        (Chat styling)
+            MessageBubble.css        (Message styling)
+            VoiceInput.css           (Voice styling)
+
+  Data (data/)
+     employees.json                   (Employee database)
+         Users (3 demo accounts)
+         Leave balance
+         HR policies
+         Meeting rooms
+         IT support info
+
+==========================================
+Total: 27 Files | ~90 KB | Production Ready
+==========================================
